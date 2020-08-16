@@ -1,0 +1,46 @@
+ESR Covid-19 Dashboard,,,
+Data downloaded: 15/08/2020 23:34,,,
+,,,
+Gender,,,
+Gender,,Cases,Percentage
+Male,,726,45.12
+Female,,883,54.88
+Unknown,,0,0
+,,,
+Age group (years),,,
+Age group,Gender,Cases,Percentage
+<1,All,6,0.37
+<1,Male,5,0.3
+<1,Female,1,0.1
+1-4,All,21,1.31
+1-4,Male,9,0.6
+1-4,Female,12,0.7
+5-19,All,143,8.89
+5-19,Male,50,3.1
+5-19,Female,93,5.8
+20-34,All,556,34.56
+20-34,Male,234,14.5
+20-34,Female,322,20
+35-49,All,316,19.64
+35-49,Male,134,8.3
+35-49,Female,182,11.3
+50-64,All,365,22.68
+50-64,Male,182,11.3
+50-64,Female,183,11.4
+65-79,All,162,10.07
+65-79,Male,92,5.7
+65-79,Female,70,4.4
+>=80,All,40,2.49
+>=80,Male,20,1.2
+>=80,Female,20,1.2
+Unknown,All,0,0
+Unknown,Male,0,0
+Unknown,Female,0,0
+,,,
+Ethnicity,,,
+Ethnicity,,Cases,Percentage
+Asian,,236,14.7
+European or Other,,1116,69.4
+Maori,,140,8.7
+Pacific Peoples,,110,6.8
+Unknown,,7,0.4
