@@ -127,7 +127,7 @@ for index, row in today_df.iterrows():
             "population": 99999,
             "tested": {
                 "last_updated": datetime.datetime.now().strftime("%Y-%m-%d"),#"2020-08-13",
-                "source": "https://dhs.andaman.gov.in/NewEvents/361.pdf"
+                "source": ""
             } 
         },
         "total": {
