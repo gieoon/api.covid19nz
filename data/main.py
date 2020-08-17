@@ -1,8 +1,10 @@
 # https://nzcoviddashboard.esr.cri.nz/#!/
 
+# https://www.stats.govt.nz/experimental/covid-19-data-portal
+
 # http://api.covid19live.com/data/processed/timeseries.min.json
 
-# Processing the CSV files 
+# Processing the CSV files to construct timeseries.json & data.json
 # Save all of this data into DB
 
 # Separately scrape or update the site on a daily basis.
@@ -16,20 +18,20 @@ import json
 df = pd.read_csv('overview_dhb.csv')
 print(df.head(10))
 print(df.columns)
-data = {}
+timeseries = {}
 def createDatesForDHB(df):
     # print(df['Region'].values[0])
     region = df['Region'].values[0]
     if region == 'New Zealand':
         return
 
-    data[region] = {
+    timeseries[region] = {
         "dates": {}
     }
     for index, row in df.iterrows():
         # print(date)
         date = row['Date']
-        data[region]['dates'][date] = {
+        timeseries[region]['dates'][date] = {
             "delta": {
                 "confirmed": row['Daily confirmed'],
                 "probable": row['Daily probable'],
@@ -65,7 +67,7 @@ recovered_df = pd.read_csv('./jhhs_nz_recovered.csv')
 deaths_df = pd.read_csv('./jhhs_nz_recovered.csv')
 
 # print(confirmed_df.columns[4:])
-data['TT'] = {
+timeseries['TT'] = {
     'dates': {}
 }
 previousConfirmed = 0
@@ -77,7 +79,7 @@ for date in confirmed_df.columns[4:]:
     recovered = int(recovered_df[date].values[0])
     deceased = int(deaths_df[date].values[0])
     # print(confirmed_df[date].values)
-    data['TT']['dates'][date] = {
+    timeseries['TT']['dates'][date] = {
         "delta": {
             "confirmed": confirmed - previousConfirmed,
             "probable": 0,
@@ -99,10 +101,15 @@ for date in confirmed_df.columns[4:]:
     previousRecovered = recovered
     previousDeceased = deceased
 
-print(data['TT'])
+print(timeseries['TT'])
 # Construct output JSON
 with open('./processed/timeseries.min.json', 'w', encoding='utf-8') as f:
-    json.dump(data, f, ensure_ascii=False, indent=4)
+    json.dump(timeseries, f, ensure_ascii=False, indent=4)
+
+data = {}
+
+with open('./processed/data.min.json', 'w', encoding='utf-8') as d:
+    json.dump(data, d, ensure_ascii=False, indent=4)
 
 '''
 1. Create the dataset
