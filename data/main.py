@@ -116,6 +116,9 @@ previousRecovered = 0
 
 for index, row in today_df.iterrows():
     region = row['Region']
+    if region == 'New Zealand':
+        region = 'TT'
+        
     data[region] = {
         "delta": {
             "confirmed": 0,
