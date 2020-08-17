@@ -1,4 +1,7 @@
 # https://nzcoviddashboard.esr.cri.nz/#!/
+
+# http://api.covid19live.com/data/processed/timeseries.min.json
+
 # Processing the CSV files 
 # Save all of this data into DB
 
@@ -17,6 +20,8 @@ data = {}
 def createDatesForDHB(df):
     # print(df['Region'].values[0])
     region = df['Region'].values[0]
+    if region == 'New Zealand':
+        return
 
     data[region] = {
         "dates": {}
@@ -45,27 +50,65 @@ def createDatesForDHB(df):
 
 df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
 df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
-# print(df.describe())
-# print(df.head(10))
-# print(df.columns)
+
+# Group dataframe into regions
 for i, g in df.groupby('Region'):
     createDatesForDHB(g)
 
-# Group dataframe into regions
-# print(data)
-with open('./processed/timeseries.min.json', 'w', encoding='utf-8') as f:
-    json.dump(data, f, ensure_ascii=False, indent=4)
 # print(df['Region'].unique())
 # Extract all historical data as timeseries data
 
+
+# Create timeseries for whole of NZ from John Hopkins data
+confirmed_df = pd.read_csv('./jhhs_nz_confirmed.csv')
+recovered_df = pd.read_csv('./jhhs_nz_recovered.csv')
+deaths_df = pd.read_csv('./jhhs_nz_recovered.csv')
+
+# print(confirmed_df.columns[4:])
+data['TT'] = {
+    'dates': {}
+}
+previousConfirmed = 0
+previousRecovered = 0
+previousDeceased = 0
+
+for date in confirmed_df.columns[4:]:
+    confirmed = int(confirmed_df[date].values[0])
+    recovered = int(recovered_df[date].values[0])
+    deceased = int(deaths_df[date].values[0])
+    # print(confirmed_df[date].values)
+    data['TT']['dates'][date] = {
+        "delta": {
+            "confirmed": confirmed - previousConfirmed,
+            "probable": 0,
+            "recovered": recovered - previousRecovered,
+            "deceased": deceased - previousDeceased,
+            "total": 0,
+            "tested": 0
+        },
+        "total": {
+            "confirmed": confirmed,
+            "probable": 0,
+            "recovered": recovered,
+            "deceased": deceased,
+            "total": 0,
+            "tested": 0
+        }
+    }
+    previousConfirmed = confirmed
+    previousRecovered = recovered
+    previousDeceased = deceased
+
+print(data['TT'])
 # Construct output JSON
-
-
+with open('./processed/timeseries.min.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
 
 '''
 1. Create the dataset
 2. Save the dataset to the DB
 3. Rewire API call to load the data in the same format into timeseries.
+4. Automate new data using Github Actions
 
 '''
 
