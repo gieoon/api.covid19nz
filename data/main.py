@@ -15,7 +15,7 @@ import json
 # df = pd.read_csv('./covid_19_data_portal.csv')
 # df = pd.read_csv('./covid-cases-Confirmed.csv')
 # df = pd.read_csv('./jhhs_confirmed.csv')
-df = pd.read_csv('overview_dhb.csv')
+df = pd.read_csv('timeseries_dhb.csv')
 print(df.head(10))
 print(df.columns)
 timeseries = {}
@@ -106,10 +106,44 @@ print(timeseries['TT'])
 with open('./processed/timeseries.min.json', 'w', encoding='utf-8') as f:
     json.dump(timeseries, f, ensure_ascii=False, indent=4)
 
+# Construct data.json, which holds current figures for each region.
 data = {}
+
+today_df = pd.read_csv('./overview_today.csv')
+previousConfirmed = 0
+previousDeceased = 0
+previousRecovered = 0
+
+for index, row in today_df.iterrows():
+    region = row['Region']
+    data[region] = {
+        "delta": {
+            "confirmed": 0,
+            "deceased": 0,
+            "recovered": 0,
+        },
+        "meta": {
+            "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+12:00"),#"2020-08-16T22:17:52+05:30",
+            "population": 99999,
+            "tested": {
+                "last_updated": datetime.datetime.now().strftime("%Y-%m-%d"),#"2020-08-13",
+                "source": "https://dhs.andaman.gov.in/NewEvents/361.pdf"
+            } 
+        },
+        "total": {
+            "confirmed": row['Confirmed'],
+            "deceased": row['Deceased'],
+            "recovered": row['Confirmed'] - row['Deceased'],
+            "probably": row['Probable'],
+            "tested": 0,
+            "Incidence rate (per 100 000)":  row['Incidence rate (per 100 000)']
+        }
+    }
 
 with open('./processed/data.min.json', 'w', encoding='utf-8') as d:
     json.dump(data, d, ensure_ascii=False, indent=4)
+
+
 
 '''
 1. Create the dataset
