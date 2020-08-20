@@ -15,4 +15,7 @@ https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_d
 8. Scrape https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases,
 Get the date this was last updated and store it in runtime memory as variable.
 9. Save as __'overview_daily.csv'__
+10. Run main.py to create new updates
+11. Create a new updates file 
+12. Save to 
 10. Use Github Actions to automatically push this data using SSH credentials.
