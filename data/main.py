@@ -12,6 +12,22 @@ import pandas as pd
 import datetime
 import json
 
+
+
+tested_df = pd.read_csv('./tests_per_dhb.csv')
+# print(tested_df.head(10))
+
+def getTestedCount(region):
+    if region == 'Midcentral':
+        region = 'Mid Central'
+    if region == 'Tairawhiti':
+        region = 'Tairāwhiti'
+    if region == 'Waitemata':
+        region = 'Waitematā'
+    # print(region,tested_df.loc[tested_df['DHB'] == region]['Total tested'])
+    return int(tested_df.loc[tested_df['DHB'] == region]['Total tested'].values[0])
+
+
 # df = pd.read_csv('./covid_19_data_portal.csv')
 # df = pd.read_csv('./covid-cases-Confirmed.csv')
 # df = pd.read_csv('./jhhs_confirmed.csv')
@@ -35,7 +51,7 @@ def createDatesForDHB(df):
             "delta": {
                 "confirmed": row['Daily confirmed'],
                 "probable": row['Daily probable'],
-                "recovered": 0,
+                "recovered": row['Daily total cases'] - row['Daily deceased'] - row['Daily probable'],
                 "deceased": row['Daily deceased'],
                 "total": row['Daily total cases'],
                 "tested": 0
@@ -43,10 +59,10 @@ def createDatesForDHB(df):
             "total": {
                 "confirmed": row['Cumulative confirmed'],
                 "probable": row['Cumulative probable'],
-                "recovered": 0,
+                "recovered": row['Cumulative total cases'] - row['Cumulative deceased'] -row['Cumulative probable'],
                 "deceased": row['Cumulative deceased'],
                 "total": row['Cumulative total cases'],
-                "tested": 0
+                "tested": getTestedCount(region) # Need to pull this data from worldometers
             }
         }
 
@@ -60,11 +76,11 @@ for i, g in df.groupby('Region'):
 # print(df['Region'].unique())
 # Extract all historical data as timeseries data
 
-
 # Create timeseries for whole of NZ from John Hopkins data
 confirmed_df = pd.read_csv('./jhhs_nz_confirmed.csv')
 recovered_df = pd.read_csv('./jhhs_nz_recovered.csv')
 deaths_df = pd.read_csv('./jhhs_nz_recovered.csv')
+
 
 # print(confirmed_df.columns[4:])
 timeseries['TT'] = {
@@ -94,7 +110,7 @@ for date in confirmed_df.columns[4:]:
             "recovered": recovered,
             "deceased": deceased,
             "total": 0,
-            "tested": 0
+            "tested": getTestedCount('TT') # Need to pull this data from worldometers
         }
     }
     previousConfirmed = confirmed
@@ -121,19 +137,6 @@ def getPopulation(region):
         region = 'Waitemata'
     # print(population_df.loc[population_df['Region'] == region])
     return int(population_df.loc[population_df['Region'] == region]['Population'].values[0])
-
-tested_df = pd.read_csv('./tests_per_dhb.csv')
-# print(tested_df.head(10))
-
-def getTestedCount(region):
-    if region == 'Midcentral':
-        region = 'Mid Central'
-    if region == 'Tairawhiti':
-        region = 'Tairāwhiti'
-    if region == 'Waitemata':
-        region = 'Waitematā'
-    # print(region,tested_df.loc[tested_df['DHB'] == region]['Total tested'])
-    return int(tested_df.loc[tested_df['DHB'] == region]['Total tested'].values[0])
 
 today_df = pd.read_csv('./overview_today.csv')
 
