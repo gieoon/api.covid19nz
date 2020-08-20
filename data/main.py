@@ -16,8 +16,8 @@ import json
 # df = pd.read_csv('./covid-cases-Confirmed.csv')
 # df = pd.read_csv('./jhhs_confirmed.csv')
 df = pd.read_csv('timeseries_dhb.csv')
-print(df.head(10))
-print(df.columns)
+# print(df.head(10))
+# print(df.columns)
 timeseries = {}
 def createDatesForDHB(df):
     # print(df['Region'].values[0])
@@ -101,7 +101,7 @@ for date in confirmed_df.columns[4:]:
     previousRecovered = recovered
     previousDeceased = deceased
 
-print(timeseries['TT'])
+# print(timeseries['TT'])
 # Construct output JSON
 with open('./processed/timeseries.min.json', 'w', encoding='utf-8') as f:
     json.dump(timeseries, f, ensure_ascii=False, indent=4)
@@ -109,7 +109,44 @@ with open('./processed/timeseries.min.json', 'w', encoding='utf-8') as f:
 # Construct data.json, which holds current figures for each region.
 data = {}
 
+population_df = pd.read_csv('./dhb_populations.csv')
+
+def getPopulation(region):
+    # print(region)
+    if region == 'Mid Central':
+        region = 'Midcentral'
+    if region == 'Tairāwhiti':
+        region = 'Tairawhiti'
+    if region == 'Waitematā':
+        region = 'Waitemata'
+    # print(population_df.loc[population_df['Region'] == region])
+    return population_df.loc[population_df['Region'] == region]['Population']
+
+tested_df = pd.read_csv('./tests_per_dhb.csv')
+# print(tested_df.head(10))
+
+def getTestedCount(region):
+    if region == 'Midcentral':
+        region = 'Mid Central'
+    if region == 'Tairawhiti':
+        region = 'Tairāwhiti'
+    if region == 'Waitemata':
+        region = 'Waitematā'
+    # print(region,tested_df.loc[tested_df['DHB'] == region]['Total tested'])
+    return tested_df.loc[tested_df['DHB'] == region]['Total tested']
+
 today_df = pd.read_csv('./overview_today.csv')
+
+daily_df = pd.read_csv('./overview_daily.csv')
+
+# Join today & daily on Region
+today_df = pd.merge(today_df, daily_df, on='Region', how='outer') #suffixes='df1', 'df2'
+
+# Set the previous to the second to last column in timeseries data
+# previousConfirmed = int(confirmed_df.columns[-2].values[0])
+# previousDeceased = int(deaths_df[-2].values[0])
+# previousRecovered = int(recovered_df[-2].values[0])
+
 previousConfirmed = 0
 previousDeceased = 0
 previousRecovered = 0
@@ -127,22 +164,26 @@ for index, row in today_df.iterrows():
         },
         "meta": {
             "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+12:00"),#"2020-08-16T22:17:52+05:30",
-            "population": 99999,
+            "population": getPopulation(region),
             "tested": {
-                "last_updated": datetime.datetime.now().strftime("%Y-%m-%d"),#"2020-08-13",
-                "source": ""
+                # Update from URL, needs to be passed in or scraped with each scrape.
+                "last_updated": "2020-08-10",
+                #datetime.datetime.now().strftime("%Y-%m-%d"),#"2020-08-13",
+                "source": "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-testing-rates-ethnicity-and-dhb"
             } 
         },
         "total": {
             "confirmed": row['Confirmed'],
+            "active": row['Active'],
             "deceased": row['Deceased'],
-            "recovered": row['Confirmed'] - row['Deceased'],
-            "probably": row['Probable'],
-            "tested": 0,
+            "recovered": row['Recovered'],
+            "probable": row['Probable'],
+            "tested": getTestedCount(region),
             "Incidence rate (per 100 000)":  row['Incidence rate (per 100 000)']
         }
     }
 
+print(data)
 with open('./processed/data.min.json', 'w', encoding='utf-8') as d:
     json.dump(data, d, ensure_ascii=False, indent=4)
 
