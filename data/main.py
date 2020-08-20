@@ -10,9 +10,8 @@
 # Separately scrape or update the site on a daily basis.
 import pandas as pd
 import datetime
+from datetime import timedelta
 import json
-
-
 
 tested_df = pd.read_csv('./tests_per_dhb.csv')
 # print(tested_df.head(10))
@@ -67,7 +66,12 @@ def createDatesForDHB(df):
         }
 
 df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
+df['Date'] = df['Date'] + timedelta(days=5)
 df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
+
+# pd.DatetimeIndex(df['Date']) + pd.DateOffset(2)
+
+print(df.tail(10))
 
 # Group dataframe into regions
 for i, g in df.groupby('Region'):
@@ -200,6 +204,11 @@ for index, row in today_df.iterrows():
 # print(data)
 with open('./processed/data.min.json', 'w', encoding='utf-8') as d:
     json.dump(data, d, ensure_ascii=False, indent=4)
+
+# Append update.json contents to updates_previous.json
+# updates = []
+# with open('./updates.json', 'w') as updates:
+#     with open('./updates_previous.json', 'w') as previous:
 
 
 
