@@ -120,7 +120,7 @@ def getPopulation(region):
     if region == 'Waitematā':
         region = 'Waitemata'
     # print(population_df.loc[population_df['Region'] == region])
-    return population_df.loc[population_df['Region'] == region]['Population']
+    return int(population_df.loc[population_df['Region'] == region]['Population'].values[0])
 
 tested_df = pd.read_csv('./tests_per_dhb.csv')
 # print(tested_df.head(10))
@@ -133,15 +133,17 @@ def getTestedCount(region):
     if region == 'Waitemata':
         region = 'Waitematā'
     # print(region,tested_df.loc[tested_df['DHB'] == region]['Total tested'])
-    return tested_df.loc[tested_df['DHB'] == region]['Total tested']
+    return int(tested_df.loc[tested_df['DHB'] == region]['Total tested'].values[0])
 
 today_df = pd.read_csv('./overview_today.csv')
 
+
 daily_df = pd.read_csv('./overview_daily.csv')
+# print(daily_df.head(5))
 
 # Join today & daily on Region
-today_df = pd.merge(today_df, daily_df, on='Region', how='outer') #suffixes='df1', 'df2'
-
+today_df = pd.merge(today_df, daily_df, on='Region', how='inner') #suffixes='df1', 'df2'
+print(today_df.head(5))
 # Set the previous to the second to last column in timeseries data
 # previousConfirmed = int(confirmed_df.columns[-2].values[0])
 # previousDeceased = int(deaths_df[-2].values[0])
@@ -155,7 +157,7 @@ for index, row in today_df.iterrows():
     region = row['Region']
     if region == 'New Zealand':
         region = 'TT'
-        
+    print(getPopulation(region),": ",getTestedCount(region))
     data[region] = {
         "delta": {
             "confirmed": 0,
@@ -182,8 +184,9 @@ for index, row in today_df.iterrows():
             "Incidence rate (per 100 000)":  row['Incidence rate (per 100 000)']
         }
     }
+    # print(data[region])
 
-print(data)
+# print(data)
 with open('./processed/data.min.json', 'w', encoding='utf-8') as d:
     json.dump(data, d, ensure_ascii=False, indent=4)
 
