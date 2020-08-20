@@ -54,7 +54,7 @@ def createDatesForDHB(df):
                 "recovered": row['Daily total cases'] - row['Daily deceased'] - row['Daily probable'],
                 "deceased": row['Daily deceased'],
                 "total": row['Daily total cases'],
-                "tested": 0
+                "tested": getTestedCount(region)
             },
             "total": {
                 "confirmed": row['Cumulative confirmed'],
@@ -89,11 +89,13 @@ timeseries['TT'] = {
 previousConfirmed = 0
 previousRecovered = 0
 previousDeceased = 0
+previousTested = 0
 
 for date in confirmed_df.columns[4:]:
     confirmed = int(confirmed_df[date].values[0])
     recovered = int(recovered_df[date].values[0])
     deceased = int(deaths_df[date].values[0])
+    tested = getTestedCount('TT') # Need to pull this data from worldometers
     # print(confirmed_df[date].values)
     timeseries['TT']['dates'][date] = {
         "delta": {
@@ -102,20 +104,21 @@ for date in confirmed_df.columns[4:]:
             "recovered": recovered - previousRecovered,
             "deceased": deceased - previousDeceased,
             "total": 0,
-            "tested": 0
+            "tested": tested - previousTested
         },
         "total": {
             "confirmed": confirmed,
             "probable": 0,
             "recovered": recovered,
             "deceased": deceased,
-            "total": 0,
-            "tested": getTestedCount('TT') # Need to pull this data from worldometers
+            "total": confirmed + recovered + deceased,
+            "tested": tested
         }
     }
     previousConfirmed = confirmed
     previousRecovered = recovered
     previousDeceased = deceased
+    previousTested = tested
 
 # print(timeseries['TT'])
 # Construct output JSON
