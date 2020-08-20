@@ -81,6 +81,9 @@ confirmed_df = pd.read_csv('./jhhs_nz_confirmed.csv')
 recovered_df = pd.read_csv('./jhhs_nz_recovered.csv')
 deaths_df = pd.read_csv('./jhhs_nz_recovered.csv')
 
+# Extract NZ row because this data has all of the countries
+def getNZRow(df):
+    return df.loc[df['Country/Region'] == 'New Zealand']
 
 # print(confirmed_df.columns[4:])
 timeseries['TT'] = {
@@ -91,10 +94,12 @@ previousRecovered = 0
 previousDeceased = 0
 previousTested = 0
 
+
+
 for date in confirmed_df.columns[4:]:
-    confirmed = int(confirmed_df[date].values[0])
-    recovered = int(recovered_df[date].values[0])
-    deceased = int(deaths_df[date].values[0])
+    confirmed = int(getNZRow(confirmed_df)[date].values[0])
+    recovered = int(getNZRow(recovered_df)[date].values[0])
+    deceased = int(getNZRow(deaths_df)[date].values[0])
     tested = getTestedCount('TT') # Need to pull this data from worldometers
     # print(confirmed_df[date].values)
     timeseries['TT']['dates'][date] = {
