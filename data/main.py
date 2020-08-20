@@ -181,7 +181,7 @@ for index, row in today_df.iterrows():
             } 
         },
         "total": {
-            "confirmed": row['Confirmed'],
+            "confirmed": row['Confirmed'] + row['Probable'],
             "active": row['Active'],
             "deceased": row['Deceased'],
             "recovered": row['Recovered'],
