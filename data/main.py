@@ -180,9 +180,9 @@ for index, row in today_df.iterrows():
     # print(getPopulation(region),": ",getTestedCount(region))
     data[region] = {
         "delta": {
-            "confirmed": row['Confirmed'] + row['Probable'] - int(confirmed_df[lastDate].values[0]),
-            "deceased": row['Deceased'] - int(deaths_df[lastDate].values[0]),
-            "recovered": row['Recovered'] - int(recovered_df[lastDate].values[0]),
+            "confirmed": row['Confirmed'] + row['Probable'] - int(getNZRow(confirmed_df)[lastDate].values[0]),
+            "deceased": row['Deceased'] - int(getNZRow(deaths_df)[lastDate].values[0]),
+            "recovered": row['Recovered'] - int(getNZRow(recovered_df)[lastDate].values[0]),
         },
         "meta": {
             "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+12:00"),#"2020-08-16T22:17:52+05:30",
