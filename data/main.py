@@ -66,7 +66,7 @@ def createDatesForDHB(df):
         }
 
 df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y')
-df['Date'] = df['Date'] + timedelta(days=5)
+# df['Date'] = df['Date'] + timedelta(days=5)
 df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
 
 # pd.DatetimeIndex(df['Date']) + pd.DateOffset(2)
