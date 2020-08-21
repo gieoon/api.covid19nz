@@ -170,8 +170,9 @@ previousRecovered = 0
 
 # print(int(getNZRow(confirmed_df)[lastDate].values[0]), int(getNZRow(deaths_df)[lastDate].values[0]), int(getNZRow(recovered_df)[lastDate].values[0]))
 
-def getStatisticFromTimeseries(lastDate, region, type):
-    return int(timeseries[region]['dates'][lastDate].total[type].values[0])
+def getStatisticFromTimeseries(lastDate, region, statistic):
+    print(timeseries[region]['dates'][lastDate]['total'][statistic])
+    return int(timeseries[region]['dates'][lastDate]['total'][statistic])
 
 for index, row in today_df.iterrows():
     region = row['Region']
