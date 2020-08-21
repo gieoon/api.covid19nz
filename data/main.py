@@ -71,7 +71,7 @@ df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
 
 # pd.DatetimeIndex(df['Date']) + pd.DateOffset(2)
 
-print(df.tail(10))
+# print(df.tail(10))
 
 # Group dataframe into regions
 for i, g in df.groupby('Region'):
@@ -158,7 +158,7 @@ daily_df = pd.read_csv('./overview_daily.csv')
 
 # Join today & daily on Region
 today_df = pd.merge(today_df, daily_df, on='Region', how='inner') #suffixes='df1', 'df2'
-print(today_df.head(5))
+# print(today_df.head(5))
 # Set the previous to the second to last column in timeseries data
 # previousConfirmed = int(confirmed_df.columns[-2].values[0])
 # previousDeceased = int(deaths_df[-2].values[0])
@@ -168,16 +168,21 @@ previousConfirmed = 0
 previousDeceased = 0
 previousRecovered = 0
 
+print(list(timeseries['TT']['dates'].keys())[-2])
+
+lastDate = list(timeseries['TT']['dates'].keys())[-2]
+
+
 for index, row in today_df.iterrows():
     region = row['Region']
     if region == 'New Zealand':
         region = 'TT'
-    print(getPopulation(region),": ",getTestedCount(region))
+    # print(getPopulation(region),": ",getTestedCount(region))
     data[region] = {
         "delta": {
-            "confirmed": 0,
-            "deceased": 0,
-            "recovered": 0,
+            "confirmed": row['Confirmed'] + row['Probable'] - int(confirmed_df[lastDate].values[0]),
+            "deceased": row['Deceased'] - int(deaths_df[lastDate].values[0]),
+            "recovered": row['Recovered'] - int(recovered_df[lastDate].values[0]),
         },
         "meta": {
             "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+12:00"),#"2020-08-16T22:17:52+05:30",
