@@ -62,7 +62,7 @@ def createData(date, filename, previousConfirmed, previousDeceased, previousReco
     previousDeceased = int(getNZRow(deaths_df)[date].values[0])
     previousRecovered = int(getNZRow(recovered_df)[date].values[0])
 
-    with open('./processed/days/data-' + filename + '.csv', 'w', encoding='utf-8') as out:
+    with open('./processed/days/data-' + filename + '.min.json', 'w', encoding='utf-8') as out:
         json.dump(data, out, ensure_ascii=False, indent=4)
 
     return (previousConfirmed, previousDeceased, previousRecovered)
