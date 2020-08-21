@@ -97,5 +97,8 @@
     "3 Months": "3ヶ月前から",
     "1 Month": "1ヶ月前から",
     "Spread Trends": "感染動向",
-    "We're still reviewing historical testing data": "過去のテストデータを引き続き確認しています"
+    "Historical testing data is still under reconciliation": "過去のテストデータを引き続き確認しています",
+    "Auckland is currently at Alert Level 3": "オークランドは現在警報レベル3です",
+    "The rest of New Zealand is currently at Alert Level 2": "ニュージーランドの他の地域は現在、警報レベル2です",
+    "Find out about the Covid-19 Alert Level system": "警報レベルシステムについて詳細知る"
   }
