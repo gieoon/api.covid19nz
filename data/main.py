@@ -152,7 +152,6 @@ def getPopulation(region):
 
 today_df = pd.read_csv('./overview_today.csv')
 
-
 daily_df = pd.read_csv('./overview_daily.csv')
 # print(daily_df.head(5))
 
@@ -168,22 +167,37 @@ previousConfirmed = 0
 previousDeceased = 0
 previousRecovered = 0
 
-print(list(timeseries['TT']['dates'].keys())[-2])
 
-lastDate = list(timeseries['TT']['dates'].keys())[-2]
-print(int(getNZRow(confirmed_df)[lastDate].values[0]), int(getNZRow(deaths_df)[lastDate].values[0]), int(getNZRow(recovered_df)[lastDate].values[0]))
+# print(int(getNZRow(confirmed_df)[lastDate].values[0]), int(getNZRow(deaths_df)[lastDate].values[0]), int(getNZRow(recovered_df)[lastDate].values[0]))
+
+def getStatisticFromTimeseries(lastDate, region, type):
+    return int(timeseries[region]['dates'][lastDate].total[type].values[0])
 
 for index, row in today_df.iterrows():
     region = row['Region']
+    data [region] = {}
     if region == 'New Zealand':
         region = 'TT'
+        lastDate = list(timeseries['TT']['dates'].keys())[-2]
+        data [region] = {
+            "delta": {
+                "confirmed": row['Confirmed'] + row['Probable'] - int(getNZRow(confirmed_df)[lastDate].values[0]),
+                "deceased": row['Deceased'] - int(getNZRow(deaths_df)[lastDate].values[0]),
+                "recovered": row['Recovered'] - int(getNZRow(recovered_df)[lastDate].values[0]),
+            },
+        }
     # print(getPopulation(region),": ",getTestedCount(region))
+    else:
+        lastDate = list(timeseries[region]['dates'].keys())[-2]
+        data[region] = {
+            "delta": {
+                "confirmed": row['Confirmed'] + row['Probable'] - (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'confirmed')),
+                "deceased": row['Deceased'] - getStatisticFromTimeseries(lastDate, region, 'deceased'),
+                "recovered": row['Recovered'] - getStatisticFromTimeseries(lastDate, region, 'recovered'),
+            }
+        }
+
     data[region] = {
-        "delta": {
-            "confirmed": row['Confirmed'] + row['Probable'] - int(getNZRow(confirmed_df)[lastDate].values[0]),
-            "deceased": row['Deceased'] - int(getNZRow(deaths_df)[lastDate].values[0]),
-            "recovered": row['Recovered'] - int(getNZRow(recovered_df)[lastDate].values[0]),
-        },
         "meta": {
             "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+12:00"),#"2020-08-16T22:17:52+05:30",
             "population": getPopulation(region),
