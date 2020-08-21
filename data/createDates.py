@@ -65,6 +65,8 @@ def createData(date, filename, previousConfirmed, previousDeceased, previousReco
     with open('./processed/days/data-' + filename + '.csv', 'w', encoding='utf-8') as out:
         json.dump(data, out, ensure_ascii=False, indent=4)
 
+    return (previousConfirmed, previousDeceased, previousRecovered)
+
 # Loop through each date and save as new file
 for date in confirmed_df.columns[4:]:
     print("date: ", date)
@@ -72,4 +74,5 @@ for date in confirmed_df.columns[4:]:
     filename = datetime.datetime.strftime(dateObj, '%Y-%m-%d')
     print("filename: ", filename)
     # Create filename from date in YY-mm-dd format
-    createData(date, filename, previousConfirmed, previousDeceased, previousRecovered)
+    (previousConfirmed, previousDeceased, previousRecovered) = createData(date, filename, previousConfirmed, previousDeceased, previousRecovered)
+    
