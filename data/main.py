@@ -198,30 +198,26 @@ for index, row in today_df.iterrows():
             }
         }
 
-    data[region] = {
-        "meta": {
-            "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+12:00"),#"2020-08-16T22:17:52+05:30",
-            "population": getPopulation(region),
-            "tested": {
-                # Update from URL, needs to be passed in or scraped with each scrape.
-                "last_updated": "2020-08-10",
-                #datetime.datetime.now().strftime("%Y-%m-%d"),#"2020-08-13",
-                "source": "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-testing-rates-ethnicity-and-dhb"
-            } 
-        },
-        "total": {
-            "confirmed": row['Confirmed'] + row['Probable'],
-            "active": row['Active'],
-            "deceased": row['Deceased'],
-            "recovered": row['Recovered'],
-            "probable": row['Probable'],
-            "tested": getTestedCount(region),
-            "Incidence rate (per 100 000)":  row['Incidence rate (per 100 000)']
-        }
+    data[region]["meta"] = {
+        "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+12:00"),#"2020-08-16T22:17:52+05:30",
+        "population": getPopulation(region),
+        "tested": {
+            # Update from URL, needs to be passed in or scraped with each scrape.
+            "last_updated": "2020-08-10",
+            #datetime.datetime.now().strftime("%Y-%m-%d"),#"2020-08-13",
+            "source": "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-testing-rates-ethnicity-and-dhb"
+        } 
     }
-    # print(data[region])
+    data[region]["total"] = {
+        "confirmed": row['Confirmed'] + row['Probable'],
+        "active": row['Active'],
+        "deceased": row['Deceased'],
+        "recovered": row['Recovered'],
+        "probable": row['Probable'],
+        "tested": getTestedCount(region),
+        "Incidence rate (per 100 000)":  row['Incidence rate (per 100 000)']
+    }
 
-# print(data)
 with open('./processed/days/data.min.json', 'w', encoding='utf-8') as d:
     json.dump(data, d, ensure_ascii=False, indent=4)
 
