@@ -82,8 +82,8 @@ for i, g in df.groupby('Region'):
 
 # Create timeseries for whole of NZ from John Hopkins data
 confirmed_df = pd.read_csv('./jhhs_nz_confirmed.csv')
+deaths_df = pd.read_csv('./jhhs_nz_deaths.csv')
 recovered_df = pd.read_csv('./jhhs_nz_recovered.csv')
-deaths_df = pd.read_csv('./jhhs_nz_recovered.csv')
 
 # Extract NZ row because this data has all of the countries
 def getNZRow(df):
@@ -171,7 +171,7 @@ previousRecovered = 0
 print(list(timeseries['TT']['dates'].keys())[-2])
 
 lastDate = list(timeseries['TT']['dates'].keys())[-2]
-print(int(confirmed_df[lastDate].values[0]), int(deaths_df[lastDate].values[0]), int(recovered_df[lastDate].values[0]))
+print(int(getNZRow(confirmed_df)[lastDate].values[0]), int(getNZRow(deaths_df)[lastDate].values[0]), int(getNZRow(recovered_df)[lastDate].values[0]))
 
 for index, row in today_df.iterrows():
     region = row['Region']
