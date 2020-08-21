@@ -171,7 +171,7 @@ previousRecovered = 0
 print(list(timeseries['TT']['dates'].keys())[-2])
 
 lastDate = list(timeseries['TT']['dates'].keys())[-2]
-
+print(int(confirmed_df[lastDate].values[0]), int(deaths_df[lastDate].values[0]), int(recovered_df[lastDate].values[0]))
 
 for index, row in today_df.iterrows():
     region = row['Region']
