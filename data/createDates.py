@@ -4,6 +4,7 @@
 
 import pandas as pd
 import datetime
+import json
 
 confirmed_df = pd.read_csv('./jhhs_nz_confirmed.csv')
 recovered_df = pd.read_csv('./jhhs_nz_recovered.csv')
@@ -36,13 +37,13 @@ def createData(date, filename, previousConfirmed, previousDeceased, previousReco
     # with open('./processed/days/data-' + )
     data['TT'] = {
         "delta": {
-            "confirmed": getNZRow(confirmed_df)[date].values[0] - previousConfirmed,
-            "deceased": getNZRow(deaths_df)[date].values[0] - previousDeceased,
-            "recovered": getNZRow(recovered_df)[date].values[0] - previousRecovered,
+            "confirmed": int(getNZRow(confirmed_df)[date].values[0]) - previousConfirmed,
+            "deceased": int(getNZRow(deaths_df)[date].values[0]) - previousDeceased,
+            "recovered": int(getNZRow(recovered_df)[date].values[0]) - previousRecovered,
         },
         "meta": {
             "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+12:00"),#"2020-08-16T22:17:52+05:30",
-            "population": getPopulation(region),
+            "population": getPopulation('TT'),
             "tested": {
                 # Update from URL, needs to be passed in or scraped with each scrape.
                 "last_updated": "2020-08-10",
@@ -51,21 +52,24 @@ def createData(date, filename, previousConfirmed, previousDeceased, previousReco
             } 
         },
         "total": {
-            "confirmed": getNZRow(confirmed_df)[date].values[0],
-            "deceased": getNZRow(deaths_df)[date].values[0],
-            "recovered": getNZRow(recovered_df)[date].values[0],
+            "confirmed": int(getNZRow(confirmed_df)[date].values[0]),
+            "deceased": int(getNZRow(deaths_df)[date].values[0]),
+            "recovered": int(getNZRow(recovered_df)[date].values[0]),
             # "tested": getTestedCount(region),
         }
     }
-    previousConfirmed = getNZRow(confirmed_df)[date].values[0]
-    previousDeceased = getNZRow(deaths_df)[date].values[0]
-    previousRecovered = getNZRow(recovered_df)[date].values[0]
+    previousConfirmed = int(getNZRow(confirmed_df)[date].values[0])
+    previousDeceased = int(getNZRow(deaths_df)[date].values[0])
+    previousRecovered = int(getNZRow(recovered_df)[date].values[0])
+
+    with open('./processed/days/data-' + filename + '.csv', 'w', encoding='utf-8') as out:
+        json.dump(data, out, ensure_ascii=False, indent=4)
 
 # Loop through each date and save as new file
 for date in confirmed_df.columns[4:]:
     print("date: ", date)
-    dateObj = datetime.strptime(date, '%m/%d/%y')
-    filename = datetime.strftime(dateObj, 'yy-&m-%d')
+    dateObj = datetime.datetime.strptime(date, '%m/%d/%y')
+    filename = datetime.datetime.strftime(dateObj, '%Y-%m-%d')
     print("filename: ", filename)
     # Create filename from date in YY-mm-dd format
     createData(date, filename, previousConfirmed, previousDeceased, previousRecovered)
