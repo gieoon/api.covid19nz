@@ -202,7 +202,7 @@ for index, row in today_df.iterrows():
     # print(data[region])
 
 # print(data)
-with open('./processed/data.min.json', 'w', encoding='utf-8') as d:
+with open('./processed/days/data.min.json', 'w', encoding='utf-8') as d:
     json.dump(data, d, ensure_ascii=False, indent=4)
 
 # Append update.json contents to updates_previous.json
