@@ -176,7 +176,6 @@ def getStatisticFromTimeseries(lastDate, region, statistic):
 
 for index, row in today_df.iterrows():
     region = row['Region']
-    data [region] = {}
     if region == 'New Zealand':
         region = 'TT'
         lastDate = list(timeseries['TT']['dates'].keys())[-2]
