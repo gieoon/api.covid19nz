@@ -210,12 +210,16 @@ for index, row in today_df.iterrows():
                 "recovered": row['Recovered'] - getStatisticFromTimeseries(lastDate, region, 'recovered'),
             }
         }
-        print("confirmed delta: ", int(getNZRow(confirmed_df)[confirmed_df.columns[-2]]))
+        print('-------------------')
+        print('lastDate: ', lastDate)
+        print("region: ", region)
+        print("confirmed delta: ", (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'probable')))
         # print("current confirmed: ", row['Confirmed'] + row['Probable'])
         print("current confirmed: ", row['Total'])
-        print("deceased delta: ", int(getNZRow(deaths_df)[deaths_df.columns[-2]]))
+        print("deceased delta: ", getStatisticFromTimeseries(lastDate, region, 'deceased'))
         print("currenet deceased: ", row['Deceased'])
-        print("recovered delta: ", int(getNZRow(recovered_df)[recovered_df.columns[-2]]))
+        print("recovered delta: ", getStatisticFromTimeseries(lastDate, region, 'recovered'))
+        print("current recovered: ", row['Recovered'])
 
     data[region]["meta"] = {
         "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+12:00"),#"2020-08-16T22:17:52+05:30",
