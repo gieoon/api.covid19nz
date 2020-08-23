@@ -98,14 +98,20 @@ previousRecovered = 0
 previousDeceased = 0
 previousTested = 0
 
-
-
 for date in confirmed_df.columns[4:]:
     confirmed = int(getNZRow(confirmed_df)[date].values[0])
     recovered = int(getNZRow(recovered_df)[date].values[0])
     deceased = int(getNZRow(deaths_df)[date].values[0])
     tested = getTestedCount('TT') # Need to pull this data from worldometers
     # print(confirmed_df[date].values)
+
+    # Add leading 0 if not exist
+    # print(date)
+    # date = '/'.join(('0' if len(x)<2 else '')+x for x in date.split('/'))
+    # print(date)
+    date = datetime.datetime.strptime(date, '%m/%d/%y') # '%m/%d/%Y'
+    date = date.strftime('%Y-%m-%d')
+
     timeseries['TT']['dates'][date] = {
         "delta": {
             "confirmed": confirmed - previousConfirmed,
@@ -113,7 +119,7 @@ for date in confirmed_df.columns[4:]:
             "recovered": recovered - previousRecovered,
             "deceased": deceased - previousDeceased,
             "total": 0,
-            "tested": tested - previousTested
+            "tested": tested - previousTested   
         },
         "total": {
             "confirmed": confirmed,
@@ -129,7 +135,6 @@ for date in confirmed_df.columns[4:]:
     previousDeceased = deceased
     previousTested = tested
 
-# print(timeseries['TT'])
 # Construct output JSON
 with open('./processed/timeseries.min.json', 'w', encoding='utf-8') as f:
     json.dump(timeseries, f, ensure_ascii=False, indent=4)
@@ -140,14 +145,12 @@ data = {}
 population_df = pd.read_csv('./dhb_populations.csv')
 
 def getPopulation(region):
-    # print(region)
     if region == 'Mid Central':
         region = 'Midcentral'
     if region == 'Tairāwhiti':
         region = 'Tairawhiti'
     if region == 'Waitematā':
         region = 'Waitemata'
-    # print(population_df.loc[population_df['Region'] == region])
     return int(population_df.loc[population_df['Region'] == region]['Population'].values[0])
 
 today_df = pd.read_csv('./overview_today.csv')
@@ -171,19 +174,25 @@ previousRecovered = 0
 # print(int(getNZRow(confirmed_df)[lastDate].values[0]), int(getNZRow(deaths_df)[lastDate].values[0]), int(getNZRow(recovered_df)[lastDate].values[0]))
 
 def getStatisticFromTimeseries(lastDate, region, statistic):
-    print(timeseries[region]['dates'][lastDate]['total'][statistic])
     return int(timeseries[region]['dates'][lastDate]['total'][statistic])
 
 for index, row in today_df.iterrows():
     region = row['Region']
     if region == 'New Zealand':
         region = 'TT'
-        lastDate = list(timeseries['TT']['dates'].keys())[-2]
+        # lastDate = list(timeseries['TT']['dates'].keys())[-2]
+
+        # lastDate = datetime.datetime.strptime(lastDate, '%Y-%m-%d') # '%m/%d/%Y'
+        # lastDate = lastDate.strftime('%m/%d/%y')
+        print("getNZRow(recovered_df).columns[-2]: ", getNZRow(recovered_df)[recovered_df.columns[-2]])
         data [region] = {
             "delta": {
-                "confirmed": row['Confirmed'] + row['Probable'] - int(getNZRow(confirmed_df)[lastDate].values[0]),
-                "deceased": row['Deceased'] - int(getNZRow(deaths_df)[lastDate].values[0]),
-                "recovered": row['Recovered'] - int(getNZRow(recovered_df)[lastDate].values[0]),
+                # "confirmed": row['Confirmed'] + row['Probable'] - int(getNZRow(confirmed_df)[lastDate].values[0]),
+                # "deceased": row['Deceased'] - int(getNZRow(deaths_df)[lastDate].values[0]),
+                # "recovered": row['Recovered'] - int(getNZRow(recovered_df)[lastDate].values[0]),
+                "confirmed": row['Confirmed'] + row['Probable'] - int(getNZRow(confirmed_df)[confirmed_df.columns[-2]]),
+                "deceased": row['Deceased'] - int(getNZRow(deaths_df)[deaths_df.columns[-2]]),
+                "recovered": row['Recovered'] - int(getNZRow(recovered_df)[recovered_df.columns[-2]]),
             },
         }
     # print(getPopulation(region),": ",getTestedCount(region))
