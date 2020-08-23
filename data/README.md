@@ -18,7 +18,9 @@ Get the date this was last updated and store it in runtime memory as variable.
 9. Save as __'overview_daily.csv'__
 10. Run main.py to create new updates
 11. Create a new updates file 
-12. Save to 
+12. Optionally use
+https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_Zealand
+
 13. Use Github Actions to automatically push this data using SSH credentials.
 
 
