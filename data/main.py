@@ -185,12 +185,7 @@ for index, row in today_df.iterrows():
     if region == 'New Zealand':
         region = 'TT'
         # lastDate = list(timeseries['TT']['dates'].keys())[-2]
-        print("confirmed delta: ", int(getNZRow(confirmed_df)[confirmed_df.columns[-2]]))
-        # print("current confirmed: ", row['Confirmed'] + row['Probable'])
-        print("current confirmed: ", row['Total'])
-        print("deceased delta: ", int(getNZRow(deaths_df)[deaths_df.columns[-2]]))
-        print("currenet deceased: ", row['Deceased'])
-        print("recovered delta: ", int(getNZRow(recovered_df)[recovered_df.columns[-2]]))
+        
         # lastDate = datetime.datetime.strptime(lastDate, '%Y-%m-%d') # '%m/%d/%Y'
         # lastDate = lastDate.strftime('%m/%d/%y')
         data [region] = {
@@ -209,12 +204,18 @@ for index, row in today_df.iterrows():
         lastDate = list(timeseries[region]['dates'].keys())[-2]
         data[region] = {
             "delta": {
-                "confirmed": (row['Total']) - (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'confirmed')),
+                "confirmed": (row['Total']) - (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'probable')),
                 "active": row['Active'],
                 "deceased": row['Deceased'] - getStatisticFromTimeseries(lastDate, region, 'deceased'),
                 "recovered": row['Recovered'] - getStatisticFromTimeseries(lastDate, region, 'recovered'),
             }
         }
+        print("confirmed delta: ", int(getNZRow(confirmed_df)[confirmed_df.columns[-2]]))
+        # print("current confirmed: ", row['Confirmed'] + row['Probable'])
+        print("current confirmed: ", row['Total'])
+        print("deceased delta: ", int(getNZRow(deaths_df)[deaths_df.columns[-2]]))
+        print("currenet deceased: ", row['Deceased'])
+        print("recovered delta: ", int(getNZRow(recovered_df)[recovered_df.columns[-2]]))
 
     data[region]["meta"] = {
         "last_updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+12:00"),#"2020-08-16T22:17:52+05:30",
