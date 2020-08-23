@@ -28,5 +28,20 @@
         "update": "9 of the new cases spread via community transmission",
         "date": "2020,08,21,14:10",
         "source": "https://www.rnz.co.nz/news/national/424103/covid-19-nine-new-community-cases-in-nz" 
+    },
+    {
+        "update": "Auckland community outbreak grows by one case",
+        "date": "2020,08,23,14:52",
+        "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12358797" 
+    },
+    {
+        "update": "Two West Auckland supermarkets closed",
+        "date": "2020,08,23,05:52",
+        "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12358735" 
+    },
+    {
+        "update": "A leading epidemiologist is predicting an extension to Auckland's level 3 lockdown",
+        "date": "2020,08,23,12:49",
+        "source": "https://www.newshub.co.nz/home/new-zealand/2020/08/coronavirus-the-numbers-behind-auckland-s-path-out-of-lockdown.html" 
     }
 ]
