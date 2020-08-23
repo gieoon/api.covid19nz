@@ -186,17 +186,19 @@ for index, row in today_df.iterrows():
         region = 'TT'
         # lastDate = list(timeseries['TT']['dates'].keys())[-2]
         print("confirmed delta: ", int(getNZRow(confirmed_df)[confirmed_df.columns[-2]]))
+        # print("current confirmed: ", row['Confirmed'] + row['Probable'])
+        print("current confirmed: ", row['Total'])
         print("deceased delta: ", int(getNZRow(deaths_df)[deaths_df.columns[-2]]))
+        print("currenet deceased: ", row['Deceased'])
         print("recovered delta: ", int(getNZRow(recovered_df)[recovered_df.columns[-2]]))
         # lastDate = datetime.datetime.strptime(lastDate, '%Y-%m-%d') # '%m/%d/%Y'
         # lastDate = lastDate.strftime('%m/%d/%y')
-        print("getNZRow(recovered_df).columns[-2]: ", getNZRow(recovered_df)[recovered_df.columns[-2]])
         data [region] = {
             "delta": {
                 # "confirmed": row['Confirmed'] + row['Probable'] - int(getNZRow(confirmed_df)[lastDate].values[0]),
                 # "deceased": row['Deceased'] - int(getNZRow(deaths_df)[lastDate].values[0]),
                 # "recovered": row['Recovered'] - int(getNZRow(recovered_df)[lastDate].values[0]),
-                "confirmed": row['Confirmed'] - int(getNZRow(confirmed_df)[confirmed_df.columns[-2]]),
+                "confirmed": (row['Total']) - int(getNZRow(confirmed_df)[confirmed_df.columns[-2]]),
                 "active": row['Active'],
                 "deceased": row['Deceased'] - int(getNZRow(deaths_df)[deaths_df.columns[-2]]),
                 "recovered": row['Recovered'] - int(getNZRow(recovered_df)[recovered_df.columns[-2]]),
@@ -207,8 +209,7 @@ for index, row in today_df.iterrows():
         lastDate = list(timeseries[region]['dates'].keys())[-2]
         data[region] = {
             "delta": {
-                # 'Confirmed' inherently has both of 'confirmed' and 'probable' combined in timeseries data, so no need to add again..
-                "confirmed": row['Confirmed'] - (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'confirmed')),
+                "confirmed": (row['Total']) - (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'confirmed')),
                 "active": row['Active'],
                 "deceased": row['Deceased'] - getStatisticFromTimeseries(lastDate, region, 'deceased'),
                 "recovered": row['Recovered'] - getStatisticFromTimeseries(lastDate, region, 'recovered'),
