@@ -94,6 +94,7 @@ timeseries['TT'] = {
     'dates': {}
 }
 previousConfirmed = 0
+previousActive = 0
 previousRecovered = 0
 previousDeceased = 0
 previousTested = 0
@@ -115,6 +116,7 @@ for date in confirmed_df.columns[4:]:
     timeseries['TT']['dates'][date] = {
         "delta": {
             "confirmed": confirmed - previousConfirmed,
+            "active": (confirmed - recovered - deceased) - previousActive,
             "probable": 0,
             "recovered": recovered - previousRecovered,
             "deceased": deceased - previousDeceased,
@@ -123,6 +125,7 @@ for date in confirmed_df.columns[4:]:
         },
         "total": {
             "confirmed": confirmed,
+            "active": confirmed - recovered - deceased,
             "probable": 0,
             "recovered": recovered,
             "deceased": deceased,
@@ -131,6 +134,7 @@ for date in confirmed_df.columns[4:]:
         }
     }
     previousConfirmed = confirmed
+    previousActive = confirmed - recovered - deceased
     previousRecovered = recovered
     previousDeceased = deceased
     previousTested = tested
