@@ -195,6 +195,7 @@ for index, row in today_df.iterrows():
                 # "deceased": row['Deceased'] - int(getNZRow(deaths_df)[lastDate].values[0]),
                 # "recovered": row['Recovered'] - int(getNZRow(recovered_df)[lastDate].values[0]),
                 "confirmed": row['Confirmed'] + row['Probable'] - int(getNZRow(confirmed_df)[confirmed_df.columns[-2]]),
+                "active": row['Active'],
                 "deceased": row['Deceased'] - int(getNZRow(deaths_df)[deaths_df.columns[-2]]),
                 "recovered": row['Recovered'] - int(getNZRow(recovered_df)[recovered_df.columns[-2]]),
             },
@@ -205,6 +206,7 @@ for index, row in today_df.iterrows():
         data[region] = {
             "delta": {
                 "confirmed": row['Confirmed'] + row['Probable'] - (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'confirmed')),
+                "active": row['Active'],
                 "deceased": row['Deceased'] - getStatisticFromTimeseries(lastDate, region, 'deceased'),
                 "recovered": row['Recovered'] - getStatisticFromTimeseries(lastDate, region, 'recovered'),
             }
