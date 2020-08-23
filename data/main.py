@@ -160,7 +160,7 @@ daily_df = pd.read_csv('./overview_daily.csv')
 
 # Join today & daily on Region
 today_df = pd.merge(today_df, daily_df, on='Region', how='inner') #suffixes='df1', 'df2'
-# print(today_df.head(5))
+print(today_df.loc[today_df['Region'] == 'New Zealand'])
 # Set the previous to the second to last column in timeseries data
 # previousConfirmed = int(confirmed_df.columns[-2].values[0])
 # previousDeceased = int(deaths_df[-2].values[0])
@@ -217,7 +217,8 @@ for index, row in today_df.iterrows():
         } 
     }
     data[region]["total"] = {
-        "confirmed": row['Confirmed'] + row['Probable'],
+        # "confirmed": row['Confirmed'] + row['Probable'],
+        "confirmed": row['Total'], # From overview_daily.csv
         "active": row['Active'],
         "deceased": row['Deceased'],
         "recovered": row['Recovered'],
