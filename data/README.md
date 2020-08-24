@@ -22,7 +22,7 @@ Get the date this was last updated and store it in runtime memory as variable.
 https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_Zealand
 
 13. Use Github Actions to automatically push this data using SSH credentials.
-
+14. Update the daily news at __'updates.json'__ and save previous news to __'updates_prev.json'__
 
 # Regional data
 Bay of Plenty testing data
