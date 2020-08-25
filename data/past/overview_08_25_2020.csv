@@ -1,0 +1,68 @@
+DHB,Total tested,Tests per 1000,Positive
+Northland,14681,81,0.2
+Waitematā,53333,84,0.3
+Auckland,46666,85,0.3
+Counties Manukau,58960,104,0.2
+Waikato,39309,93,0.4
+Lakes,10353,93,0.1
+Bay of Plenty,19949,83,0.2
+Tairāwhiti,5196,106,0.1
+Hawke's Bay,15743,94,0.2
+Taranaki,9098,75,0.1
+Mid Central,13857,76,0.2
+Whanganui,5364,83,0.1
+Capital and Coast,28597,89,0.3
+Hutt Valley,11593,77,0.1
+Wairarapa,3559,78,0.1
+Nelson Marlborough,10461,69,0.3
+West Coast,1776,55,0.2
+Canterbury,39306,69,0.3
+South Canterbury,4457,74,0.4
+Southern,26919,81,0.6
+TT,434799,88,0.3
+
+Region,Active,Recovered,Deceased_daily,Total
+Auckland,32,176,0,208
+Bay of Plenty,0,48,0,48
+Canterbury,0,152,12,164
+Capital and Coast,0,93,2,95
+Counties Manukau,54,133,0,187
+Hawke's Bay,0,44,0,44
+Hutt Valley,0,22,0,22
+Lakes,0,16,0,16
+Mid Central,0,32,0,32
+Nelson Marlborough,0,49,0,49
+Northland,0,28,0,28
+South Canterbury,0,17,0,17
+Southern,0,214,2,216
+Tairāwhiti,0,4,0,4
+Taranaki,0,16,0,16
+Waikato,1,186,1,188
+Wairarapa,0,8,0,8
+Waitematā,17,233,4,254
+West Coast,0,4,1,5
+Whanganui,0,9,0,9
+New Zealand,123,1538,22,1683
+
+Region,Total_today,Incidence rate (per 100 000),Relative incidence rate,Confirmed,Probable,Deceased
+Auckland,226,41.94,1.24,175,51,0
+Bay of Plenty,48,20.27,0.60,34,14,0
+Canterbury,178,31.62,0.94,113,65,12
+Capital and Coast,95,30.00,0.89,71,24,2
+Counties Manukau,202,36.22,1.07,179,23,0
+Hawke's Bay,44,26.61,0.79,38,6,0
+Hutt Valley,22,14.74,0.44,19,3,0
+Lakes,17,15.45,0.46,16,1,0
+Midcentral,32,17.95,0.53,27,5,0
+Nelson Marlborough,49,32.61,0.97,37,12,0
+Northland,28,15.69,0.46,26,2,0
+South Canterbury,17,28.33,0.84,15,2,0
+Southern,216,65.81,1.95,186,30,2
+Tairawhiti,4, 8.17,0.24,3,1,0
+Taranaki,16,13.37,0.40,14,2,0
+Waikato,187,44.83,1.33,153,34,1
+Wairarapa,8,17.84,0.53,6,2,0
+Waitemata,246,39.53,1.17,175,71,4
+West Coast,5,15.41,0.46,4,1,1
+Whanganui,9,13.94,0.41,8,1,0
+New Zealand,1649,33.77,1.00,1299,350,22

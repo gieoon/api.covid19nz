@@ -1,5 +1,5 @@
 # Scraping instructions
-
+0. Save all data for today into __'past/overview_{date}.csv'__
 1. Run update.sh script, which runs main.py and all scrapers
 2. Scrape https://nzcoviddashboard.esr.cri.nz/#!/ , click on 'View Data', and download CSV, 
 3. Save as __'overview_today.csv'__

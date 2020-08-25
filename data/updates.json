@@ -58,5 +58,21 @@
         "update": "123 active cases of COVID-19 in New Zealand",
         "date": "2020,08,24,17:52",
         "source": "https://www.newshub.co.nz/home/new-zealand/2020/08/coronavirus-live-updates-latest-on-auckland-s-covid-19-outbreak-monday-august-24.html"
+    },
+    {
+        "update": "Seven new cases of Covid-19 in New Zealand, all linked to cluster",
+        "date": "2020,08,25,14:05",
+        "source": "https://www.rnz.co.nz/news/national/424381/seven-new-cases-of-covid-19-in-new-zealand-all-linked-to-cluster-bloomfield"
+    },
+    {
+        "update": "Jetstar suspending flights around New Zealand",
+        "date": "2020,08,25,08:47",
+        "source": "https://www.nzherald.co.nz/business/news/article.cfm?c_id=3&objectid=12359252"
+    },
+    {
+        "update":"There are no new imported cases",
+        "date":"2020,08,25,13:00",
+        "source": "https://www.health.govt.nz/news-media/media-releases/7-new-cases-covid-19-0"
     }
+
 ]
