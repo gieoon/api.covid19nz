@@ -1,20 +1,5 @@
 [
     {
-        "update": "Donald Trump calls out NZ again, says US is doing 'an incredible job' against Covid-19",
-        "date": "2020,08,20,12:47",
-        "source": "https://www.stuff.co.nz/national/health/coronavirus/300087090/coronavirus-donald-trump-calls-out-nz-again-says-us-is-doing-an-incredible-job-against-covid19" 
-    },
-    {
-        "update": "Five new cases",
-        "date": "2020,08,20,13:49",
-        "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12358172"
-    },
-    {
-        "update": "Resources for the border sector",
-        "date": "2020,08,20,09:00",
-        "source": "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-information-specific-audiences/covid-19-resources-border-sector#protection"
-    },
-    {
       "update": "11 new cases confirmed",
       "date": "2020,08,21,13:00",
       "source": "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases" 
@@ -73,6 +58,15 @@
         "update":"There are no new imported cases",
         "date":"2020,08,25,13:00",
         "source": "https://www.health.govt.nz/news-media/media-releases/7-new-cases-covid-19-0"
+    },
+    {
+        "update": "Infected shopper in New Zealand's largest supermarket",
+        "date": "2020,08,26,13:55",
+        "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12359694"
+    },
+    {
+        "update": "QR codes to become mandatory from 11.59pm on Thursday 3 September",
+        "date": "2020,08,26,15:17",
+        "source": "https://www.rnz.co.nz/news/national/424440/live-covid-19-updates-from-new-zealand-and-the-world-on-26-august"
     }
-
 ]
