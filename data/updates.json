@@ -1,20 +1,5 @@
 [
     {
-      "update": "11 new cases confirmed",
-      "date": "2020,08,21,13:00",
-      "source": "https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases" 
-    },
-    {
-        "update": "Auckland is scheduled to be in alert level 3 and the rest of the country in level 2 until 11.59pm, August 26.",
-        "date": "2020,08,21,12:45",
-        "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12358172"
-    },
-    {
-        "update": "9 of the new cases spread via community transmission",
-        "date": "2020,08,21,14:10",
-        "source": "https://www.rnz.co.nz/news/national/424103/covid-19-nine-new-community-cases-in-nz" 
-    },
-    {
         "update": "Auckland community outbreak grows by one case",
         "date": "2020,08,23,14:52",
         "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12358797" 
@@ -68,5 +53,15 @@
         "update": "QR codes to become mandatory from 11.59pm on Thursday 3 September",
         "date": "2020,08,26,15:17",
         "source": "https://www.rnz.co.nz/news/national/424440/live-covid-19-updates-from-new-zealand-and-the-world-on-26-august"
+    },
+    {
+        "update": "Seven new cases of Covid-19 in New Zealand",
+        "date": "2020,08,27,14:03",
+        "source": "https://www.rnz.co.nz/news/national/424579/seven-new-cases-of-covid-19-in-new-zealand"
+    },
+    {
+        "update": "At least 400 people possibly exposed to Covid-19 at Auckland church",
+        "date": "2020,08,27,14:19",
+        "source": "https://www.stuff.co.nz/national/health/coronavirus/122584890/coronavirus-at-least-400-people-possibly-exposed-to-covid19-at-auckland-church"
     }
 ]

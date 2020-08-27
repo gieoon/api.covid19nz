@@ -1,9 +1,9 @@
 Region,Active,Recovered,Deceased_daily,Total
-Auckland,35,177,0,212
+Auckland,35,176,0,211
 Bay of Plenty,0,48,0,48
 Canterbury,0,152,12,164
 Capital and Coast,0,93,2,95
-Counties Manukau,57,134,0,191
+Counties Manukau,57,133,0,190
 Hawke's Bay,0,44,0,44
 Hutt Valley,0,22,0,22
 Lakes,0,16,0,16
@@ -16,7 +16,7 @@ Tairāwhiti,0,4,0,4
 Taranaki,0,16,0,16
 Waikato,1,186,1,188
 Wairarapa,0,8,0,8
-Waitematā,22,236,4,262
+Waitematā,20,234,4,258
 West Coast,0,4,1,5
 Whanganui,0,9,0,9
-New Zealand,126,1554,22,1702
+New Zealand,134,1539,22,1695
