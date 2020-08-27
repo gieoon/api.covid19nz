@@ -1,7 +1,47 @@
 Date,Region,Daily confirmed,Daily probable,Daily deceased,Daily total cases,Cumulative confirmed,Cumulative probable,Cumulative deceased,Cumulative total cases
+27/08/2020,Auckland,0,0,0,0,190,51,0,241
+27/08/2020,Bay of Plenty,0,0,0,0,34,14,0,48
+27/08/2020,Canterbury,0,0,0,0,114,65,12,179
+27/08/2020,Capital and Coast,0,0,0,0,71,24,2,95
+27/08/2020,Counties Manukau,1,0,0,1,199,24,0,223
+27/08/2020,Hawke's Bay,0,0,0,0,38,6,0,44
+27/08/2020,Hutt Valley,0,0,0,0,19,3,0,22
+27/08/2020,Lakes,0,0,0,0,15,1,0,16
+27/08/2020,Midcentral,0,0,0,0,27,5,0,32
+27/08/2020,Nelson Marlborough,0,0,0,0,37,12,0,49
+27/08/2020,Northland,0,0,0,0,26,2,0,28
+27/08/2020,South Canterbury,0,0,0,0,15,2,0,17
+27/08/2020,Southern,0,0,0,0,186,30,2,216
+27/08/2020,Tairawhiti,0,0,0,0,3,1,0,4
+27/08/2020,Taranaki,0,0,0,0,14,2,0,16
+27/08/2020,Waikato,0,0,0,0,154,34,1,188
+27/08/2020,Wairarapa,0,0,0,0,6,2,0,8
+27/08/2020,Waitemata,0,0,0,0,191,71,4,262
+27/08/2020,West Coast,0,0,0,0,4,1,1,5
+27/08/2020,Whanganui,0,0,0,0,8,1,0,9
+26/08/2020,Auckland,3,0,0,3,190,51,0,241
+26/08/2020,Bay of Plenty,0,0,0,0,34,14,0,48
+26/08/2020,Canterbury,0,0,0,0,114,65,12,179
+26/08/2020,Capital and Coast,0,0,0,0,71,24,2,95
+26/08/2020,Counties Manukau,0,0,0,0,198,24,0,222
+26/08/2020,Hawke's Bay,0,0,0,0,38,6,0,44
+26/08/2020,Hutt Valley,0,0,0,0,19,3,0,22
+26/08/2020,Lakes,0,0,0,0,15,1,0,16
+26/08/2020,Midcentral,0,0,0,0,27,5,0,32
+26/08/2020,Nelson Marlborough,0,0,0,0,37,12,0,49
+26/08/2020,Northland,0,0,0,0,26,2,0,28
+26/08/2020,South Canterbury,0,0,0,0,15,2,0,17
+26/08/2020,Southern,0,0,0,0,186,30,2,216
+26/08/2020,Tairawhiti,0,0,0,0,3,1,0,4
+26/08/2020,Taranaki,0,0,0,0,14,2,0,16
+26/08/2020,Waikato,0,0,0,0,154,34,1,188
+26/08/2020,Wairarapa,0,0,0,0,6,2,0,8
+26/08/2020,Waitemata,4,0,0,4,191,71,4,262
+26/08/2020,West Coast,0,0,0,0,4,1,1,5
+26/08/2020,Whanganui,0,0,0,0,8,1,0,9
 25/08/2020,Auckland,0,0,0,0,187,51,0,238
 25/08/2020,Bay of Plenty,0,0,0,0,34,14,0,48
-25/08/2020,Canterbury,0,0,0,0,113,65,12,178
+25/08/2020,Canterbury,1,0,0,1,114,65,12,179
 25/08/2020,Capital and Coast,0,0,0,0,71,24,2,95
 25/08/2020,Counties Manukau,1,0,0,1,198,24,0,222
 25/08/2020,Hawke's Bay,0,0,0,0,38,6,0,44
@@ -16,7 +56,7 @@ Date,Region,Daily confirmed,Daily probable,Daily deceased,Daily total cases,Cumu
 25/08/2020,Taranaki,0,0,0,0,14,2,0,16
 25/08/2020,Waikato,0,0,0,0,154,34,1,188
 25/08/2020,Wairarapa,0,0,0,0,6,2,0,8
-25/08/2020,Waitemata,0,0,0,0,184,71,4,255
+25/08/2020,Waitemata,2,0,0,2,187,71,4,258
 25/08/2020,West Coast,0,0,0,0,4,1,1,5
 25/08/2020,Whanganui,0,0,0,0,8,1,0,9
 24/08/2020,Auckland,3,0,0,3,187,51,0,238
@@ -36,7 +76,7 @@ Date,Region,Daily confirmed,Daily probable,Daily deceased,Daily total cases,Cumu
 24/08/2020,Taranaki,0,0,0,0,14,2,0,16
 24/08/2020,Waikato,0,0,0,0,154,34,1,188
 24/08/2020,Wairarapa,0,0,0,0,6,2,0,8
-24/08/2020,Waitemata,1,0,0,1,184,71,4,255
+24/08/2020,Waitemata,2,0,0,2,185,71,4,256
 24/08/2020,West Coast,0,0,0,0,4,1,1,5
 24/08/2020,Whanganui,0,0,0,0,8,1,0,9
 23/08/2020,Auckland,2,0,0,2,184,51,0,235
@@ -3639,4 +3679,4 @@ Date,Region,Daily confirmed,Daily probable,Daily deceased,Daily total cases,Cumu
 26/02/2020,Waitemata,0,0,0,0,0,0,0,0
 26/02/2020,West Coast,0,0,0,0,0,0,0,0
 26/02/2020,Whanganui,0,0,0,0,0,0,0,0
-,New Zealand,1,0,0,1,1339,351,22,1690
+,New Zealand,1,0,0,1,1351,351,22,1702
