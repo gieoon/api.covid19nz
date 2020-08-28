@@ -30,7 +30,9 @@ def getTestedCount(region):
 # df = pd.read_csv('./covid_19_data_portal.csv')
 # df = pd.read_csv('./covid-cases-Confirmed.csv')
 # df = pd.read_csv('./jhhs_confirmed.csv')
-df = pd.read_csv('timeseries_dhb.csv')
+df = pd.read_csv('./past/timeseries_dhb_previous.csv')
+df_current = pd.read_csv('timeseries_dhb.csv')
+df = df.append(df_current)
 # print(df.head(10))
 # print(df.columns)
 timeseries = {}
@@ -164,7 +166,7 @@ daily_df = pd.read_csv('./overview_daily.csv')
 
 # Join today & daily on Region
 today_df = pd.merge(today_df, daily_df, on='Region', how='inner') #suffixes='df1', 'df2'
-print(today_df.loc[today_df['Region'] == 'New Zealand'])
+# print(today_df.loc[today_df['Region'] == 'New Zealand'])
 # Set the previous to the second to last column in timeseries data
 # previousConfirmed = int(confirmed_df.columns[-2].values[0])
 # previousDeceased = int(deaths_df[-2].values[0])
@@ -180,6 +182,8 @@ previousRecovered = 0
 def getStatisticFromTimeseries(lastDate, region, statistic):
     return int(timeseries[region]['dates'][lastDate]['total'][statistic])
 
+lastDateIndex = -2
+print(list(timeseries.keys()))
 for index, row in today_df.iterrows():
     region = row['Region']
     if region == 'New Zealand':
@@ -193,15 +197,15 @@ for index, row in today_df.iterrows():
                 # "confirmed": row['Confirmed'] + row['Probable'] - int(getNZRow(confirmed_df)[lastDate].values[0]),
                 # "deceased": row['Deceased'] - int(getNZRow(deaths_df)[lastDate].values[0]),
                 # "recovered": row['Recovered'] - int(getNZRow(recovered_df)[lastDate].values[0]),
-                "confirmed": (row['Total']) - int(getNZRow(confirmed_df)[confirmed_df.columns[-2]]),
+                "confirmed": row['Total'] - int(getNZRow(confirmed_df)[confirmed_df.columns[lastDateIndex]]),
                 "active": row['Active'],
-                "deceased": row['Deceased'] - int(getNZRow(deaths_df)[deaths_df.columns[-2]]),
-                "recovered": row['Recovered'] - int(getNZRow(recovered_df)[recovered_df.columns[-2]]),
+                "deceased": row['Deceased'] - int(getNZRow(deaths_df)[deaths_df.columns[lastDateIndex]]),
+                "recovered": row['Recovered'] - int(getNZRow(recovered_df)[recovered_df.columns[lastDateIndex]]),
             },
         }
     # print(getPopulation(region),": ",getTestedCount(region))
     else:
-        lastDate = list(timeseries[region]['dates'].keys())[-2]
+        lastDate = list(timeseries[region]['dates'].keys())[lastDateIndex]
         data[region] = {
             "delta": {
                 "confirmed": (row['Total']) - (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'probable')),

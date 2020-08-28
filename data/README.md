@@ -4,7 +4,7 @@
 2. Scrape https://nzcoviddashboard.esr.cri.nz/#!/ , click on 'View Data', and download CSV, 
 3. Save as __'overview_today.csv'__
 4. Scrape https://nzcoviddashboard.esr.cri.nz/#!/, scroll down to 'Case Curve' and click on 'View Data', 'Download CSV'
-5. Save as __'timeseries_dhb.csv'__
+5. Save as __'timeseries_dhb_current.csv'__
 6. Go to John Hopkins and get historical data for recovered, confirmed, deceased separately
 https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv
 
