@@ -199,7 +199,7 @@ for index, row in today_df.iterrows():
                 # "recovered": row['Recovered'] - int(getNZRow(recovered_df)[lastDate].values[0]),
                 "confirmed": row['Total'] - int(getNZRow(confirmed_df)[confirmed_df.columns[lastDateIndex]]),
                 "active": row['Active'],
-                "deceased": row['Deceased'] - int(getNZRow(deaths_df)[deaths_df.columns[lastDateIndex]]),
+                "deceased": row['Deceased_daily'] - int(getNZRow(deaths_df)[deaths_df.columns[lastDateIndex]]),
                 "recovered": row['Recovered'] - int(getNZRow(recovered_df)[recovered_df.columns[lastDateIndex]]),
             },
         }
@@ -210,19 +210,19 @@ for index, row in today_df.iterrows():
             "delta": {
                 "confirmed": (row['Total']) - (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'probable')),
                 "active": row['Active'],
-                "deceased": row['Deceased'] - getStatisticFromTimeseries(lastDate, region, 'deceased'),
+                "deceased": row['Deceased_daily'] - getStatisticFromTimeseries(lastDate, region, 'deceased'),
                 "recovered": row['Recovered'] - getStatisticFromTimeseries(lastDate, region, 'recovered'),
             }
         }
         print('-------------------')
         print('lastDate: ', lastDate)
         print("region: ", region)
-        print("confirmed delta: ", (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'probable')))
+        print("confirmed previous: ", (getStatisticFromTimeseries(lastDate, region, 'confirmed') + getStatisticFromTimeseries(lastDate, region, 'probable')))
         # print("current confirmed: ", row['Confirmed'] + row['Probable'])
         print("current confirmed: ", row['Total'])
-        print("deceased delta: ", getStatisticFromTimeseries(lastDate, region, 'deceased'))
-        print("currenet deceased: ", row['Deceased'])
-        print("recovered delta: ", getStatisticFromTimeseries(lastDate, region, 'recovered'))
+        print("deceased previous: ", getStatisticFromTimeseries(lastDate, region, 'deceased'))
+        print("currenet deceased: ", row['Deceased_daily'])
+        print("recovered previous: ", getStatisticFromTimeseries(lastDate, region, 'recovered'))
         print("current recovered: ", row['Recovered'])
 
     data[region]["meta"] = {
@@ -239,7 +239,7 @@ for index, row in today_df.iterrows():
         # "confirmed": row['Confirmed'] + row['Probable'],
         "confirmed": row['Total'], # From overview_daily.csv
         "active": row['Active'],
-        "deceased": row['Deceased'],
+        "deceased": row['Deceased_daily'],
         "recovered": row['Recovered'],
         "probable": row['Probable'],
         "tested": getTestedCount(region),
