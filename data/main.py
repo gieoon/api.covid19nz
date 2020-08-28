@@ -182,8 +182,8 @@ previousRecovered = 0
 def getStatisticFromTimeseries(lastDate, region, statistic):
     return int(timeseries[region]['dates'][lastDate]['total'][statistic])
 
-lastDateIndex = -2
-print(list(timeseries.keys()))
+lastDateIndex = -1
+# print(list(timeseries.keys()))
 for index, row in today_df.iterrows():
     region = row['Region']
     if region == 'New Zealand':
