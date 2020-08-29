@@ -1,20 +1,5 @@
 [
     {
-        "update": "lockdown lite will be extended in Auckland for four more days until 11:59pm on Sunday, August 30",
-        "date": "2020,08,24,14:25",
-        "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12359061"
-    },
-    {
-        "update": "Nine new Covid-19 cases in New Zealand today.",
-        "date": "2020,08,24,13:41",
-        "source": "https://www.rnz.co.nz/news/national/424296/nine-new-cases-of-covid-19-in-nz-today-eight-linked-to-current-cluster"
-    },
-    {
-        "update": "123 active cases of COVID-19 in New Zealand",
-        "date": "2020,08,24,17:52",
-        "source": "https://www.newshub.co.nz/home/new-zealand/2020/08/coronavirus-live-updates-latest-on-auckland-s-covid-19-outbreak-monday-august-24.html"
-    },
-    {
         "update": "Seven new cases of Covid-19 in New Zealand, all linked to cluster",
         "date": "2020,08,25,14:05",
         "source": "https://www.rnz.co.nz/news/national/424381/seven-new-cases-of-covid-19-in-new-zealand-all-linked-to-cluster-bloomfield"
@@ -58,5 +43,20 @@
         "update": "12 new Covid cases today - five in the community",
         "date": "2020,08,28,12:45",
         "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12360319"
+    },
+    {
+        "update": "Experts call for rethink on Auckland's move to level 2",
+        "date": "2020,08,29,17:58",
+        "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12360592"
+    },
+    {
+        "update": "What happened in New Zealand on 29 August",
+        "date": "2020,08,29,21:47",
+        "source": "https://www.rnz.co.nz/news/national/424772/covid-19-what-happened-in-new-zealand-on-29-august"
+    },
+    {
+        "update": "Mystery at heart of Auckland's second wave of Covid-19",
+        "date": "2020,08,29,19:19",
+        "source": "https://www.stuff.co.nz/national/health/coronavirus/300094826/coronavirus-mystery-at-heart-of-aucklands-second-wave-of-covid19"
     }
 ]
