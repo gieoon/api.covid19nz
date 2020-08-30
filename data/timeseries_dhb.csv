@@ -1,4 +1,10 @@
 Date,Region,Daily confirmed,Daily probable,Daily deceased,Daily total cases,Cumulative confirmed,Cumulative probable,Cumulative deceased,Cumulative total cases
+29/08/2020,Auckland,1,0,0,1,76,0,0,76
+29/08/2020,Canterbury,0,0,0,0,15,0,0,15
+29/08/2020,Counties Manukau,1,0,0,1,95,1,0,96
+29/08/2020,Hutt Valley,0,0,0,0,2,0,0,2
+29/08/2020,Waikato,1,0,0,1,2,0,0,2
+29/08/2020,Waitemata,1,0,0,1,34,0,0,34
 28/08/2020,Auckland,10,0,0,10,75,0,0,75
 28/08/2020,Canterbury,0,0,0,0,15,0,0,15
 28/08/2020,Counties Manukau,5,0,0,5,94,1,0,95
@@ -443,4 +449,4 @@ Date,Region,Daily confirmed,Daily probable,Daily deceased,Daily total cases,Cumu
 16/06/2020,Hutt Valley,2,0,0,2,2,0,0,2
 16/06/2020,Waikato,0,0,0,0,0,0,0,0
 16/06/2020,Waitemata,0,0,0,0,0,0,0,0
-,New Zealand,18,0,0,18,220,1,0,221
+,New Zealand,4,0,0,4,224,1,0,225

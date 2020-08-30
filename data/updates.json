@@ -1,20 +1,5 @@
 [
     {
-        "update": "Seven new cases of Covid-19 in New Zealand, all linked to cluster",
-        "date": "2020,08,25,14:05",
-        "source": "https://www.rnz.co.nz/news/national/424381/seven-new-cases-of-covid-19-in-new-zealand-all-linked-to-cluster-bloomfield"
-    },
-    {
-        "update": "Jetstar suspending flights around New Zealand",
-        "date": "2020,08,25,08:47",
-        "source": "https://www.nzherald.co.nz/business/news/article.cfm?c_id=3&objectid=12359252"
-    },
-    {
-        "update":"There are no new imported cases",
-        "date":"2020,08,25,13:00",
-        "source": "https://www.health.govt.nz/news-media/media-releases/7-new-cases-covid-19-0"
-    },
-    {
         "update": "Infected shopper in New Zealand's largest supermarket",
         "date": "2020,08,26,13:55",
         "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12359694"
@@ -58,5 +43,15 @@
         "update": "Mystery at heart of Auckland's second wave of Covid-19",
         "date": "2020,08,29,19:19",
         "source": "https://www.stuff.co.nz/national/health/coronavirus/300094826/coronavirus-mystery-at-heart-of-aucklands-second-wave-of-covid19"
+    },
+    {
+        "update": "Jacinda Ardern announces level 2.5 for Auckland",
+        "date": "2020,08,30,14:24",
+        "source": "https://www.nzherald.co.nz/nz/news/article.cfm?c_id=1&objectid=12360355"
+    },
+    {
+        "update": "Two new Covid-19 cases, Auckland's move out of level 3 confirmed",
+        "date": "2020,08,30,14:20",
+        "source": "https://www.stuff.co.nz/national/300094867/recap-two-new-covid19-cases-aucklands-move-out-of-level-3-confirmed"
     }
 ]
